@@ -1,18 +1,24 @@
 <h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
 
 <div class="mb-3">
-    <form class="form mt-4">
+    <form class="form mt-4" [formGroup]="novoUsuarioForm" (ngSubmit)="cadastrar()" >
         <div class="mb-3">
-            <input class="form-control" placeholder="E-mail" />
+            <input class="form-control" placeholder="E-mail" formControlName="email" />
+            <app-mensagem mensagem="Email obrigatório" *ngIf="novoUsuarioForm.get('email')?.errors?.required &&
+             novoUsuarioForm.get('email')?.touched"></app-mensagem>
+             <app-mensagem mensagem="Email no formato incorreto" *ngIf="novoUsuarioForm.get('email')?.errors?.email &&
+             novoUsuarioForm.get('email')?.touched"></app-mensagem>
         </div>
         <div class="mb-3">
-            <input class="form-control" placeholder="Nome completo" />
+            <input class="form-control" placeholder="Nome completo" formControlName="fullName" />
+            <app-mensagem mensagem="Quantidade de caracteres incorretos" *ngIf="novoUsuarioForm.get('fullName')?.errors &&
+            novoUsuarioForm.get('fullName')?.touched"></app-mensagem>
         </div>
         <div class="mb-3">
-            <input class="form-control" placeholder="Usuário" />
+            <input class="form-control" placeholder="Usuário" formControlName="userName" />
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Senha" />
+            <input type="password" class="form-control" placeholder="Senha" formControlName="password" />
         </div>
         <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
