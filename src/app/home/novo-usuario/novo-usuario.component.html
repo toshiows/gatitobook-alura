@@ -16,6 +16,8 @@
         </div>
         <div class="mb-3">
             <input class="form-control" placeholder="Usuário" formControlName="userName" />
+            <app-mensagem mensagem="Usuário deve ser em letras minúsculas" *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo"></app-mensagem>
+            <app-mensagem mensagem="Campo usuário obrigatório" *ngIf="novoUsuarioForm.get('userName')?.errors?.required && novoUsuarioForm.get('userName')?.touched"></app-mensagem>
         </div>
         <div class="mb-3">
             <input type="password" class="form-control" placeholder="Senha" formControlName="password" />
